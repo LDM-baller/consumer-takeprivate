@@ -161,20 +161,17 @@ function renderDistribution() {
 }
 
 function buildDistBar(values, s) {
-  // Map min..max across values to 0..100% of bar width, but include 0 if range crosses it
-  let lo = Math.min(s.min, 0);
-  let hi = Math.max(s.max, 0);
+  let lo = s.min;
+  let hi = s.max;
   if (lo === hi) { lo -= 0.05; hi += 0.05; }
-  const pad = (hi - lo) * 0.05;
+  const pad = (hi - lo) * 0.06;
   lo -= pad; hi += pad;
   const pct = v => ((v - lo) / (hi - lo)) * 100;
-  const zeroLeft = pct(0);
   const q1L  = pct(s.q1), q3L = pct(s.q3);
   const minL = pct(s.min), maxL = pct(s.max), medL = pct(s.median);
 
   return `
     <div class="dist-bar-track"></div>
-    <div class="dist-bar-zero" style="left:${zeroLeft}%"></div>
     <div class="dist-bar-range" style="left:${q1L}%; width:${q3L - q1L}%"></div>
     <div class="dist-bar-tick"        style="left:${minL}%" title="Min ${fmtPct(s.min)}"></div>
     <div class="dist-bar-tick q"      style="left:${q1L}%"  title="Q1 ${fmtPct(s.q1)}"></div>
