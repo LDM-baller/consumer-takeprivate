@@ -174,9 +174,7 @@ function buildDistBar(values, s) {
     <div class="dist-bar-track"></div>
     <div class="dist-bar-range" style="left:${q1L}%; width:${q3L - q1L}%"></div>
     <div class="dist-bar-tick"        style="left:${minL}%" title="Min ${fmtPct(s.min)}"></div>
-    <div class="dist-bar-tick q"      style="left:${q1L}%"  title="Q1 ${fmtPct(s.q1)}"></div>
     <div class="dist-bar-tick median" style="left:${medL}%" title="Median ${fmtPct(s.median)}"></div>
-    <div class="dist-bar-tick q"      style="left:${q3L}%"  title="Q3 ${fmtPct(s.q3)}"></div>
     <div class="dist-bar-tick"        style="left:${maxL}%" title="Max ${fmtPct(s.max)}"></div>
     <div class="dist-bar-label" style="left:${minL}%">Min</div>
     <div class="dist-bar-label" style="left:${q1L}%">Q1</div>

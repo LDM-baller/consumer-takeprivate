@@ -398,27 +398,24 @@ a { color: inherit; }
 }
 .dist-bar-range {
   position: absolute;
-  top: 10px;
-  height: 8px;
+  top: 6px;
+  height: 16px;
   background: var(--bg-tint);
-  border: 1px solid #c7d4ea;
+  border: 1.5px solid #6b88c4;
   border-radius: 2px;
 }
 .dist-bar-tick {
   position: absolute;
-  top: 7px;
+  top: 9px;
   transform: translateX(-50%);
   width: 2px;
-  height: 14px;
+  height: 10px;
   background: var(--ink-mute);
 }
-.dist-bar-tick.q {
-  background: #6b7c98;
-}
 .dist-bar-tick.median {
-  top: 3px;
+  top: 6px;
   width: 3px;
-  height: 22px;
+  height: 16px;
   background: var(--navy);
   border-radius: 1px;
 }
