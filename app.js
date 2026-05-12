@@ -71,6 +71,11 @@ function statusClass(outcome) {
   return 'status-' + (outcome || '').toLowerCase();
 }
 
+function acquirerTypeBadge(type) {
+  if (type === 'Strategic') return `<span class="badge-strategic">Strategic</span>`;
+  return type || '';
+}
+
 function renderDealList() {
   const list = document.getElementById('deal-list');
   const visible = filterDeals(DEALS, activeFilter);
@@ -95,7 +100,7 @@ function renderDealList() {
         <span class="status ${statusClass(d.outcome)}">${d.outcome}</span>
       </div>
       <div class="row2">
-        ${shortAcquirer(d.acquirer)}<span class="sep">·</span>${d.acquirerType}<span class="sep">·</span>${fmtDate(d.announceDate)}
+        ${shortAcquirer(d.acquirer)}<span class="sep">·</span>${acquirerTypeBadge(d.acquirerType)}<span class="sep">·</span>${fmtDate(d.announceDate)}
       </div>
       <div class="premium">
         <span class="value ${premClass}">${fmtPct(prem)}</span>
@@ -160,15 +165,23 @@ function buildDistBar(values, s) {
   lo -= pad; hi += pad;
   const pct = v => ((v - lo) / (hi - lo)) * 100;
   const zeroLeft = pct(0);
-  const q1L = pct(s.q1), q3L = pct(s.q3);
+  const q1L  = pct(s.q1), q3L = pct(s.q3);
+  const minL = pct(s.min), maxL = pct(s.max), medL = pct(s.median);
 
   return `
     <div class="dist-bar-track"></div>
     <div class="dist-bar-zero" style="left:${zeroLeft}%"></div>
     <div class="dist-bar-range" style="left:${q1L}%; width:${q3L - q1L}%"></div>
-    <div class="dist-bar-tick"        style="left:${pct(s.min)}%"></div>
-    <div class="dist-bar-tick"        style="left:${pct(s.max)}%"></div>
-    <div class="dist-bar-tick median" style="left:${pct(s.median)}%"></div>
+    <div class="dist-bar-tick"        style="left:${minL}%" title="Min ${fmtPct(s.min)}"></div>
+    <div class="dist-bar-tick q"      style="left:${q1L}%"  title="Q1 ${fmtPct(s.q1)}"></div>
+    <div class="dist-bar-tick median" style="left:${medL}%" title="Median ${fmtPct(s.median)}"></div>
+    <div class="dist-bar-tick q"      style="left:${q3L}%"  title="Q3 ${fmtPct(s.q3)}"></div>
+    <div class="dist-bar-tick"        style="left:${maxL}%" title="Max ${fmtPct(s.max)}"></div>
+    <div class="dist-bar-label" style="left:${minL}%">Min</div>
+    <div class="dist-bar-label" style="left:${q1L}%">Q1</div>
+    <div class="dist-bar-label median" style="left:${medL}%">Med</div>
+    <div class="dist-bar-label" style="left:${q3L}%">Q3</div>
+    <div class="dist-bar-label" style="left:${maxL}%">Max</div>
   `;
 }
 
@@ -227,7 +240,7 @@ function renderDealDetail(d, prices) {
       </div>
       <div class="dd-company">${d.company}</div>
       <div class="dd-meta"><strong>${d.acquirer}</strong></div>
-      <div class="dd-meta">${d.acquirerType} · announced ${fmtDateLong(d.announceDate)}</div>
+      <div class="dd-meta">${acquirerTypeBadge(d.acquirerType)} · announced ${fmtDateLong(d.announceDate)}</div>
     </div>
 
     <div class="dd-chart">
