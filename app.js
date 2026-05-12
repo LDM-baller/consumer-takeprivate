@@ -1,5 +1,9 @@
-/* Consumer Take-Privates · LULU comp
+/* Consumer take-private precedents
    Static, vanilla JS, no build step. */
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 
 const PREMIUM_KEYS = [
   { key: 'premUnaff', label: 'vs. Undisturbed', infoKey: 'undisturbed' },
