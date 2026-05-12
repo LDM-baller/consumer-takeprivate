@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1f44">
+<title>Consumer Take-Privates · LULU comp</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+
+  <header class="hero">
+    <div class="eyebrow">Take-private precedents</div>
+    <h1>Precedent consumer take-privates over $1B</h1>
+    <p class="sub">10 deals announced 2023–2026. Tap a deal for detail. Scroll for the premium distribution across the sample.</p>
+  </header>
+
+  <nav class="quick-nav">
+    <a href="#deals">Precedents</a>
+    <a href="#distribution">Distribution</a>
+  </nav>
+
+  <section id="deals" class="section">
+    <div class="section-head">
+      <h2>1 · Precedent transactions</h2>
+      <div class="count" id="deal-count"></div>
+    </div>
+    <div class="filters">
+      <span class="filter-label">Outcome</span>
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="Closed">Closed</button>
+      <button class="chip" data-filter="Pending">Pending</button>
+      <button class="chip" data-filter="failed">Failed</button>
+    </div>
+    <ul class="deal-list" id="deal-list"></ul>
+  </section>
+
+  <section id="distribution" class="section">
+    <div class="section-head">
+      <h2>2 · Premium distribution</h2>
+      <div class="count" id="dist-count"></div>
+    </div>
+    <p class="section-sub">Across the deals matching your filter above. Sample: consumer take-privates &gt; $1B equity value, 2023–2026.</p>
+    <div class="dist" id="dist"></div>
+  </section>
+
+  <footer class="foot">
+    <p>Sample: consumer take-privates &gt; $1B equity value, announced 2023–2026. Source: company filings + FactSet pricing. Premiums computed against last close before announcement (undisturbed <button type="button" class="info-btn" data-info="undisturbed" aria-label="What does undisturbed mean?">i</button>), 12mo trailing average, 24mo trailing average, and 52-wk high.</p>
+    <p class="foot-meta" id="foot-meta"></p>
+  </footer>
+
+</main>
+
+<div class="info-modal" id="info-modal" aria-hidden="true">
+  <div class="info-modal-backdrop" data-info-close></div>
+  <div class="info-modal-card" role="dialog" aria-modal="true">
+    <button class="info-modal-close" data-info-close aria-label="Close">×</button>
+    <h3 class="info-modal-title" id="info-modal-title"></h3>
+    <p class="info-modal-body" id="info-modal-body"></p>
+  </div>
+</div>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-backdrop" data-close></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true">
+    <button class="drawer-close" data-close aria-label="Close">×</button>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# local working copy of the source workbook — keep out of the repo
+source.xlsx
+*.xlsx
+~$*
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# claude / preview tooling
+.claude/
