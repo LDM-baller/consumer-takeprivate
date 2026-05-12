@@ -495,7 +495,8 @@ a { color: inherit; }
 .drawer-panel {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  max-height: 92vh;
+  max-height: 86vh;
+  max-height: 86dvh;
   background: var(--bg);
   border-radius: 16px 16px 0 0;
   box-shadow: var(--shadow-lg);
@@ -504,6 +505,7 @@ a { color: inherit; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding-top: env(safe-area-inset-top);
 }
 .drawer.open .drawer-panel {
   transform: translateY(0);
@@ -516,6 +518,7 @@ a { color: inherit; }
     transform: translate(-50%, calc(50% + 30px));
     width: 480px;
     max-height: 84vh;
+    max-height: 84dvh;
     border-radius: 16px;
     opacity: 0;
   }
@@ -524,27 +527,42 @@ a { color: inherit; }
     opacity: 1;
   }
 }
-.drawer-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  width: 36px; height: 36px;
-  border: none;
-  background: var(--bg-soft);
-  color: var(--ink-mute);
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 1;
+.drawer-topbar {
+  flex-shrink: 0;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  padding: 8px 14px 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
 }
 .drawer-close:active { background: var(--line); }
+.drawer-close-arrow {
+  font-size: 16px;
+  line-height: 1;
+  margin-top: -1px;
+}
 .drawer-body {
-  padding: 22px var(--pad-lg) calc(28px + env(safe-area-inset-bottom));
+  flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  padding: 18px var(--pad-lg) calc(28px + env(safe-area-inset-bottom));
 }
 
 .dd-head {
@@ -552,7 +570,6 @@ a { color: inherit; }
   flex-direction: column;
   gap: 6px;
   margin-bottom: 16px;
-  padding-right: 36px;
 }
 .dd-ticker-line {
   display: flex;
